@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate') %>
+  <link rel="stylesheet" href="/stylesheets/game.css">
+  <section>
+    <div class="row mx-md-n5">
+    <div class="col-6 px-md-5"> <h2>Welcome to the Community Page</h2> </div>
+    <div class="col-6 md-5 pl-5">Signed in as <b><%= user.Username %></b></div>
+    </div>
+    <% for(let i=0; i<comm.length;i++) { %>
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <% if(comm[i].Comm_Name.length) { %>
+                        <img class="img-fluid" alt="" src="<%= comm[i].Comm_Name %>">
+                        <% }else { %>
+                            <img class="img-fluid" alt="" src="https://res.cloudinary.com/dwuufoptw/image/upload/v1635514064/YelpCamp/a9x7a9kndmjhfkwc9l5f.jpg">
+                            <% } %> 
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i>Created By</i> :
+                            <%= comments[0].CName %>                            
+                        </h5>
+                        <p class="card-text">
+                            <u><i>Comment</i></u> :
+                            <%= comments[0].Replies%> 
+                        </p>
+                        <p class="card-text col-3">
+                            <u><i>Likes</i></u> :
+                            <%= comments[0].Likes%> 
+                        </p>
+                        <p class="card-text col-3">
+                            <u><i>Dislikes</i></u> :
+                            <%= comments[0].Dislikes%> 
+                        </p>
+            </div>
+        </div>
+    <% } %>
+ </section>  
+ <a href="/Game" name="main" class="btn btn-info font-weight-bold ">Main Page</a>

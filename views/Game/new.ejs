@@ -1,0 +1,82 @@
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center">New Game</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/Game" method="POST" novalidate class="validated-form">
+                <div class="mb-3">
+                    <label class="form-label" for="gname">Title</label>
+                    <input class="form-control" type="text" id="gname" name="gname" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="genre">Genre</label>
+                    <input class="form-control" type="text" id="genre" name="genre" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="publisher">Publisher</label>
+                    <input class="form-control" type="text" id="publisher" name="publisher" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="developer">Developer</label>
+                    <input class="form-control" type="text" id="developer" name="developer" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Price</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="price-label">$</span>
+                            <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                                aria-describedby="price-label" name="price" required>
+                        </div>
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <label class="form-label" for="discount">Discount</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="discount-label">%</span>
+                            <input type="text" class="form-control" id="discount" placeholder="0.00" aria-label="discount"
+                                aria-describedby="discount-label" name="discount" required>
+                        </div>
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="requirements">Requirements</label>
+                        <textarea class="form-control" type="text" id="requirements" name="requirements"
+                            required></textarea>
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="mb-3">
+                       <!-- <div class="form-file custom-file">
+                            <input type="file" class="form-file-input" id="picture" name="picture" multiple>
+                            <label for="picture" class="form-file-label">
+                                <span class="form-file-text custom-file-label">Choose Image(s)....</span>
+                                <span class="form-file-button">Browse</span>
+                            </label> -->
+                            <label class="form-label" for="picture">Picture URL</label>
+                            <input class="form-control" type="text" id="picture" name="picture"
+                                required></input>
+                        </div>
+                    </div>
+                <button class="btn btn-success ">Add Game</button>
+            </form>
+            <br>
+            <a href="/Game" name="main" class="btn btn-lg btn-info font-weight-bold">Main Page</a>
+        </div>
+    </div>

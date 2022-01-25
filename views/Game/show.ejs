@@ -1,0 +1,104 @@
+<% layout('layouts/boilerplate')%>
+    <link rel="stylesheet" href="/stylesheets/starscheck.css">
+    <div class="row mx-md-n5">
+        <div class="col-6 px-md-5">
+            <img src="<%= info[0].Picture %>" class="d-block w-100" alt="">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= info[0].Gname %>
+                    </h5>
+                    <p class="card-text">
+                        <%= info[0].Genre %>
+                    </p>
+                    <p class="card-text">
+                        <u>Rating</u>:
+                        <%= info[0].Rating %>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">Price: $<strike>
+                            <%= info[0].Price %>
+                        </strike><b>
+                            <%= (info[0].Price-(info[0].Price*(info[0].Discount/100))) %>
+                        </b></li>
+                    <li class="list-group-item">Publisher: <%= info[0].Publisher %>
+                    </li>
+                    <li class="list-group-item">Developer: <%= info[0].Developer %>
+                    </li>
+                    <li class="list-group-item">
+                        <%= info[0].Requirements %>
+                    </li>
+                    <li class="list-group-item"><a href="/Game/download/<%= info[0].G_id %>" name="main"
+                            class="btn btn-warning"><img
+                                src="https://img.icons8.com/carbon-copy/40/000000/download.png" />Download</a></li>
+                    <li class="list-group-item"><a href="/Game/community/<%= info[0].G_id %>" name="main"
+                            class="btn btn-danger">Join Community</a></li>
+                </ul>
+                
+            </div>
+            <a href="/Game" name="main" class="btn btn-info">Back</a>
+            
+        </div>
+
+        <div class="col-5 md-5 pl-5">
+            <% if(user){ %>
+                <h2>Leave a Review</h2>
+                <form action="/Game/<%=info[0].G_id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+                    <input type="hidden" name="id" value="<%=info[0].G_id%>">
+                    <fieldset class="starability-checkmark">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0"
+                            checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Review Text</label>
+                        <textarea class="form-control" name="rName" id="body" cols="30" rows="3" required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <button class="btn btn-success">Submit Review</button>
+                </form>
+
+                <% for(let i=0;i<review.length;i++) { %>
+                    <div class="card mb-3 ">
+                        <div class="card-body">
+                            <h5 class="card-title"> By <%= review[i].Publication%>
+                            </h5>
+                            <p class="starability-result" data-rating="<%=review[i].Rating%>">
+                                Rated: <%= review[i].Rating %> stars
+                            </p>
+                            <p class="card-text">Review: <%= review[i].RName %>
+                            </p>
+                            <p class="card-text">Review feedback: <%= review[i].Review_feedback_rating %>
+                            </p>
+                            <% if(user.U_id===review[i].U_id) {%>
+                                <!-- <form action="/Game/?/reviews/??_method=DELETE"
+                                    method="POST"> -->
+                                    <form action="/Game/<%=info[0].G_id%>/reviews/<%=review[i].R_id%>"
+                                        method="POST">
+                                        <input type="hidden" name="id" value="<%=info[0].G_id%>">
+                                    <div>
+                                    <a href="/Game/<%=info[0].G_id%>/reviews/<%=review[i].R_id%>/comment" name="main"
+                                        class="btn btn-success">Branch as Community Comment</a>
+                                    </div>
+                                    <br>
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                                <% } %>
+                        </div>
+                        <% } %>
+                    </div>
+                    <% } %>
+        </div>
+    </div>
